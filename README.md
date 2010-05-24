@@ -43,18 +43,18 @@ In yet another terminal:
 
 ## Protocol
 
-    -> :pub $chan\t$msg\r\n           publish message to channel
+    -> :pub\t$chan\t$msg\r\n          publish message to channel
     <- :n\r\n                         delivered to n subscribers
 
-    <- :msg $chan\t$from\t$msg\r\n    sent to a subscriber on 'pub'
+    <- :msg\t$chan\t$from\t$msg\r\n   sent to a subscriber on 'pub'
 
-    -> :sub $chan\r\n                 subscribe to a channel
+    -> :sub\t$chan\r\n                subscribe to a channel
     <- :0\r\n or :1\r\n
 
-    -> :unsub $chan\r\n               unsubscribe from a channel
+    -> :unsub\t$chan\r\n              unsubscribe from a channel
     <- :0\r\n or :1\r\n
 
-    -> :nick $nickname\r\n            set a user-defined nickname
+    -> :nick\t$nickname\r\n           set a user-defined nickname
     <- :0\r\n or :1\r\n
 
     -> :chan\r\n                      list channels with subscribers
