@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var sys = require('sys');
+var Client = require('../lib/pubsub-client').Client;
+var client = new Client();
+client.addListener('connect', function () {
+  client.set_nickname('I am a publisher');
+  setInterval(function () {
+    client.publish('time', ''+Date.now(), function (result) {
+      sys.puts('published to ' + result + ' subscribers');
+    });
+  }, 1000);
+});
+

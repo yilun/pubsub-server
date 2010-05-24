@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+var sys = require('sys');
+var Client = require('../lib/pubsub-client').Client;
+var client = new Client();
+client.addListener('connect', function () {
+  client.subscribe('time', function (result) {
+    if (!result) 
+      throw new Error("failed to subscribe to 'time' channel");
+  });
+  client.addListener('message', function (channel, sender, message) {
+    sys.puts('recv msg from client "' + sender + '" on channel "' + channel + '": ' + message);
+  });
+});
+

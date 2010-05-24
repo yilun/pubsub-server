@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+
+var sys = require('sys'),
+    PubSubServer = require('../lib/pubsub-server').PubSubServer;
+
+var args = {};
+process.argv.forEach(function (arg) {
+  var m = arg.match(/--(\S+)=(.+)/);
+  if (m) args[m[1]] = m[2];
+});
+
+var port = args.port || 8000;
+var host = args.host || '127.0.0.1';
+
+sys.error('launching pubsub server on ' + host + ':' + port);
+
+var pubsub_server = new PubSubServer();
+pubsub_server.listen(port, host);
+

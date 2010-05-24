@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+var sys = require('sys');
+var Client = require('../lib/pubsub-client').Client;
+var client = new Client();
+client.addListener('connect', function () {
+  client.get_metadata(function (info) {
+    sys.puts('got info ' + JSON.stringify(info));
+    process.exit(0);
+  });
+});
+
